@@ -1,3 +1,6 @@
-streamlit
+streamlit>=1.30.0
+sqlite3
 pandas
+razorpay
 plotly
+google-auth-oauthlib
