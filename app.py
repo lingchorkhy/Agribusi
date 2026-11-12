@@ -1,3 +1,26 @@
+import streamlit as st
+import sqlite3
+import pandas as pd
+import datetime
+import json
+import hashlib
+import os
+
+# ==========================================
+# 1. CONFIG & GLOBAL VARIABLES (MUST BE FIRST)
+# ==========================================
+DB_FILE = "farm.db"
+
+st.set_page_config(
+    page_title="Farm Management System",
+    page_icon="🌱",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# ==========================================
+# 2. DATABASE INITIALIZATION
+# ==========================================
 def init_db():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
@@ -15,7 +38,7 @@ def init_db():
         )
     ''')
     
-    # Farm records table with proper schema
+    # Farm records table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS farm_records (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -56,5 +79,5 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Run initialization immediately
+# Run database setup safely after DB_FILE is defined
 init_db()
